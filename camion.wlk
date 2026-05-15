@@ -9,16 +9,16 @@ object camion {
         cosas.remove(unaCosa)
     }
     method pesoTotal() {
-        return self.tara() + self.pesoDeLasCosas()
+        return self.tara() + self.pesoDeLasCosas().sum()
     }
     method pesoDeLasCosas() {
         return cosas.map({c => c.peso()})
     }
     method sonPares() {
-        return self.pesoDeLasCosas().all({c => c.even()})
+        return cosas.all({c => c.peso().even()})
     }
     method hayCosaDePeso(unPeso) {
-        return self.pesoDeLasCosas().any({c => c == unPeso})
+        return cosas.any({c => c.peso() == unPeso})
     }
     method tieneNivelDePeligrosidad(unNivel) {
         return cosas.find({c => c.nivelDePeligrosidad() == unNivel})
@@ -33,6 +33,6 @@ object camion {
         return self.pesoTotal() > 2500
     }
     method puedeCircular(unNivel) {
-        return not self.excedeElPesoMaximo() and not self.superanNivelDePeligrosidad(unNivel)
+        return not self.excedeElPesoMaximo() and self.superanNivelDePeligrosidad(unNivel).isEmpty()
     }
 }
