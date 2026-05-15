@@ -26,5 +26,13 @@ object camion {
     method superanNivelDePeligrosidad(unNivel) {
         return cosas.filter({c => c.nivelDePeligrosidad() > unNivel})
     }
-    method superanElNivelD
+    method superanElNivelDePeligrosidadDeLaCosa(unaCosa) {
+        return cosas.filter({c => c.nivelDePeligrosidad() > unaCosa.nivelDePeligrosidad()})
+    }
+    method excedeElPesoMaximo() {
+        return self.pesoTotal() > 2500
+    }
+    method puedeCircular(unNivel) {
+        return not self.excedeElPesoMaximo() and not self.superanNivelDePeligrosidad(unNivel)
+    }
 }
